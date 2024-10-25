@@ -4,12 +4,10 @@ const interes = 0.049;
 
 // Función principal
 function iniciarCalculo() {
-    // Solicita la entrada del usuario
     let monto = parseFloat(prompt('Ingrese el monto:'));
     let plazo = parseInt(prompt('Ingrese el plazo (número de pagos):'));
     let periodo = prompt('Ingrese el periodo (Diario, Semanal, Quincenal, Mensual, Bimestral, Trimestral, Medio Año, Anual):');
 
-    // Validación de datos
     if (!validarDatos(monto, plazo)) return;
 
     console.log(`Monto: ${monto}, Plazo: ${plazo}, Interés: ${interes}, Periodo: ${periodo}`);
@@ -22,7 +20,7 @@ function iniciarCalculo() {
         case 'Mensual': dias_del_periodo = 30; break;
         case 'Bimestral': dias_del_periodo = 60; break;
         case 'Trimestral': dias_del_periodo = 90; break;
-        case 'Medio año': dias_del_periodo = 180; break;
+        case 'Medio Año': dias_del_periodo = 180; break;
         case 'Anual': dias_del_periodo = 365; break;
         default: dias_del_periodo = 1;
     }
@@ -34,15 +32,13 @@ function iniciarCalculo() {
     let totalAPagar = monto + interesTotal;
     let cuotaIndividual = totalAPagar / plazo;
 
-    // Muestra los resultados en la consola
     console.log(`Interés Total: ${interesTotal.toFixed(2)}`);
     console.log(`Total a Pagar: ${totalAPagar.toFixed(2)}`);
     console.log(`Cuota Individual: ${cuotaIndividual.toFixed(2)}`);
 
-    // Cálculo de fechas
     let fechaActual = new Date();
-    let fechaInicioPago = calcularFechaInicioPago(fechaActual, dias_del_periodo, periodo);
-    let fechaUltimoPago = calcularFechaFinalPago(fechaInicioPago, plazo, dias_del_periodo, periodo);
+    let fechaInicioPago = calcularFechaInicioPago(fechaActual, dias_del_periodo);
+    let fechaUltimoPago = calcularFechaFinalPago(fechaInicioPago, plazo, dias_del_periodo);
 
     console.log(`Fecha de Inicio de Pago: ${fechaInicioPago.toLocaleDateString()}`);
     console.log(`Fecha del Último Pago: ${fechaUltimoPago.toLocaleDateString()}`);
@@ -57,11 +53,8 @@ function calcularFechaInicioPago(fecha, dias_del_periodo) {
 
 function calcularFechaFinalPago(fechaInicio, plazo, dias_del_periodo) {
     let fechaFinal = new Date(fechaInicio);
-    for (let i = 0; i < plazo - 1; i++) {
-        fechaFinal.setDate(fechaFinal.getDate() + dias_del_periodo);
-        fechaFinal = fechaHabil(fechaFinal);
-    }
-    return fechaFinal;
+    fechaFinal.setDate(fechaFinal.getDate() + (dias_del_periodo * (plazo - 1)));
+    return fechaHabil(fechaFinal);
 }
 
 function fechaHabil(fecha) {
