@@ -39,11 +39,21 @@ select {
     border: 1px solid #ced4da;
     margin-top: 5px;
     background-color: #e9ecef;
+    transition: border-color 0.3s ease;
+    /* Transición suave para el borde */
 }
 
 input[readonly] {
     background-color: #dee2e6;
     cursor: not-allowed;
+}
+
+/* Estilo para entradas inválidas */
+input:invalid {
+    border: 1px solid red;
+    /* Borde rojo para entradas inválidas */
+    background-color: #f8d7da;
+    /* Fondo ligero rojo */
 }
 
 /* Botón calcular */
