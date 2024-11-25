@@ -23,6 +23,25 @@
     color: #333333;
 }
 
+/* Estilo para campos de entrada */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
 /* Botón para limpiar el historial */
 .btn-danger {
     background-color: #dc3545;
@@ -42,4 +61,10 @@
     background-color: #c82333;
     border-color: #c82333;
     transform: scale(1.05);
+}
+
+/* Agregar foco en el botón para accesibilidad */
+.btn-danger:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
 }
